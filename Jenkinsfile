@@ -10,17 +10,17 @@ pipeline {
     stages {
         stage('Checkout Source Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/bhartigowda/DVWA-master.git'
+                git branch: 'main', url: 'https://github.com/bhartigowda/DVWA-master.git'
             }
         }
 
-        stage('Build Source Code') {
+       /* stage('Build Source Code') {
             steps {
                   withMaven {
                       sh '''mvn clean package -Dmaven.test.skip'''
                   }
             }
-        }
+        }*/
 
         stage('IO - Prescription') {
             steps {
@@ -30,7 +30,7 @@ pipeline {
                         projectName: 'dvwa-test',
                         workflowVersion: '2021.12.4'),
                     github(
-                        branch: 'master',
+                        branch: 'main',
                         configName: 'poc-github',
                         owner: 'bhartigowda',
                         repositoryName: 'DVWA-master'), 
